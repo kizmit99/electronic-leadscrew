@@ -60,8 +60,8 @@ void SPIBus :: initHardware(void)
     GpioCtrlRegs.GPBMUX1.bit.GPIO32 = 0x3;      // select SPIB_CLK
     GpioCtrlRegs.GPBGMUX1.bit.GPIO32 = 0x0;
 #elif (HARDWARE_VERSION == 3)
-    GpioCtrlRegs.GPBMUX1.bit.GPIO22 = 0x3;      // select SPIB_CLK
-    GpioCtrlRegs.GPBGMUX1.bit.GPIO22 = 0x0;
+    GpioCtrlRegs.GPAMUX2.bit.GPIO22 = 0x3;      // select SPIB_CLK
+    GpioCtrlRegs.GPAGMUX2.bit.GPIO22 = 0x0;
 #else
 #  error Must define a valid HARDWARE_VERSION
 #endif
