@@ -238,6 +238,11 @@ KEY_REG ControlPanel :: readKeys(void)
     return keyMask;
 }
 
+bool ControlPanel :: anyKeyPressed()
+{
+    return readKeys().all != 0;
+}
+
 KEY_REG ControlPanel :: getKeys()
 {
     KEY_REG newKeys;

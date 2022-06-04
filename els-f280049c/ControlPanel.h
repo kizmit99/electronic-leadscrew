@@ -179,6 +179,9 @@ public:
     // initialize the hardware for operation
     void initHardware(void);
 
+    // check whether any keys are pressed (no filtering)
+    bool anyKeyPressed();
+
     // poll the keys and return a mask
     KEY_REG getKeys(void);
 

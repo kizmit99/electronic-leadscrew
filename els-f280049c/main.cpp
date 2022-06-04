@@ -145,11 +145,15 @@ void main(void)
 
     //Try to restore state from EEPROM
 #ifdef ENABLE_STORED_STATE
-    machineState.restoreState();
-    if (machineState.isValid()) {
-        feedTableFactory.setState(machineState.getState()->tabState);
-        userInterface.setState(machineState.getState()->uiState);
-        core.setPowerOn(machineState.getState()->powerOn);
+    if (!controlPanel.anyKeyPressed()) {       //Skip restoring state if any key is pressed on startup
+        machineState.restoreState();
+        if (machineState.isValid()) {
+            feedTableFactory.setState(machineState.getState()->tabState);
+            userInterface.setState(machineState.getState()->uiState);
+            core.setPowerOn(machineState.getState()->powerOn);
+        }
+    } else {
+        while (controlPanel.anyKeyPressed()) {} //Wait for all keys to be released
     }
 #endif
 
