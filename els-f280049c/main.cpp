@@ -123,7 +123,12 @@ void main(void)
     ConfigCpuTimer(&CpuTimer0, CPU_CLOCK_MHZ, STEPPER_CYCLE_US);
 
     // Use write-only instruction to set TSS bit = 0
+#ifdef TARGET_F28004X
     CpuTimer0Regs.TCR.all = 0x4001;
+#endif
+#ifdef TARGET_F2806X
+    CpuTimer0Regs.TCR.all = 0x4000;
+#endif
 
     // Initialize peripherals and pins
     debug.initHardware();
